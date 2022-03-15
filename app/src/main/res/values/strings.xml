@@ -3,4 +3,19 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="capture_photo">Capture a photo</string>
+    <string name="delete_dialog_title">Delete?</string>
+    <string name="delete_dialog_message">Delete %1$s?</string>
+    <string name="delete_dialog_positive">Delete</string>
+    <string name="delete_dialog_negative">Cancel</string>
+    <string name="delete_image">Delete image</string>
+    <string name="image">Image</string>
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="error_connecting_camera">There was an error connecting to the camera.</string>
+    <string name="error_saving_photo">There was an error saving the photo.</string>
+    <string name="photo_saved">Photo saved! </string>
+    <string name="permission_required">The app requires camera and storage permissions to run.</string>
 </resources>
