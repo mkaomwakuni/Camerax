@@ -37,6 +37,20 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+    //This function handles the user’s response to the
+    //permissions request
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (!CameraPermissionHelper.hasCameraPermission(this) || !CameraPermissionHelper.hasStoragePermission(this)) {
+            CameraPermissionHelper.requestPermissions(this)
+        }
+        // if return values of true, then the recreate method will reload  all conditions met
+        activity because the necessary user permissions have been granted.
+        else recreate()
+    }
+
+    //The CameraPermissionHelper object’s  permissions have been granted
+    // if the user happens to deny any of the permissions (returns false) then the cameraPermissionHelper  request permissions again
     object CameraPermissionHelper {
         private const val CAMERA_PERMISSION = Manifest.permission.CAMERA
         private const val READ_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE
