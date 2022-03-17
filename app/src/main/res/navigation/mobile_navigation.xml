@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_camera">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_camera"
         android:name="com.mkao.camerax.ui.gallery.GalleryFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/title_camera"
+        tools:layout="@layout/fragement_camera" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_gallery"
         android:name="com.mkao.camerax.ui.camera.CameraFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="@string/title_Gallery"
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/navigation_notifications"

@@ -67,4 +67,3 @@ class CameraFragment : Fragment() {
             MainActivity.CameraPermissionHelper.requestPermissions(requireActivity()) }
 
 }
-}
