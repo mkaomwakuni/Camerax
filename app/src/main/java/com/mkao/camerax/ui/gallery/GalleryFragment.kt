@@ -1,4 +1,4 @@
-package com.mkao.camerax.ui.Gallery
+package com.mkao.camerax.ui.gallery
 
 import android.os.Bundle
 import android.view.LayoutInflater

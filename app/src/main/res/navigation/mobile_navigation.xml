@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.mkao.camerax.ui.Gallery.GalleryFragment"
+        android:name="com.mkao.camerax.ui.gallery.GalleryFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.mkao.camerax.ui.Camera.CameraFragment"
+        android:name="com.mkao.camerax.ui.camera.CameraFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
