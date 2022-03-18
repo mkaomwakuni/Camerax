@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -43,16 +44,10 @@ class MainActivity : AppCompatActivity() {
     //This function handles the user’s response to the
     //permissions request
 
-        }
-        // if return values of true, then the recreate method will reload  all conditions met
-       // activity because the necessary user permissions have been granted.
+    // if return values of true, then the recreate method will reload  all conditions met
+    // activity because the necessary user permissions have been granted.
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    if (!CameraPermissionHelper.hasCameraPermission(this) || !CameraPermissionHelper.hasStoragePermission(this)) {
-        CameraPermissionHelper.requestPermissions(this)
-    } else recreate()
-}
+
     //The CameraPermissionHelper object’s  permissions have been granted
     // if the user happens to deny any of the permissions (returns false) then the cameraPermissionHelper  request permissions again
     object CameraPermissionHelper {
@@ -60,11 +55,17 @@ class MainActivity : AppCompatActivity() {
         private const val READ_PERMISSION = android.Manifest.permission.READ_EXTERNAL_STORAGE
 
         fun hasCameraPermission(activity: Activity): Boolean {
-            return ContextCompat.checkSelfPermission(activity, CAMERA_PERMISSION) == PackageManager.PERMISSION_GRANTED
+            return ContextCompat.checkSelfPermission(
+                activity,
+                CAMERA_PERMISSION
+            ) == PackageManager.PERMISSION_GRANTED
         }
 
         fun hasStoragePermission(activity: Activity): Boolean {
-            return ContextCompat.checkSelfPermission(activity, READ_PERMISSION) == PackageManager.PERMISSION_GRANTED
+            return ContextCompat.checkSelfPermission(
+                activity,
+                READ_PERMISSION
+            ) == PackageManager.PERMISSION_GRANTED
         }
 
         fun requestPermissions(activity: Activity) {
@@ -72,12 +73,21 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(activity).apply {
                     setMessage(activity.getString(R.string.permission_required))
                     setPositiveButton(activity.getString(R.string.ok)) { _, _ ->
-                        ActivityCompat.requestPermissions(activity, arrayOf(CAMERA_PERMISSION, READ_PERMISSION), 1)
+                        ActivityCompat.requestPermissions(
+                            activity,
+                            arrayOf(CAMERA_PERMISSION, READ_PERMISSION),
+                            1
+                        )
                     }
                     show()
                 }
             } else {
-                ActivityCompat.requestPermissions(activity, arrayOf(CAMERA_PERMISSION, READ_PERMISSION), 1)
+                ActivityCompat.requestPermissions(
+                    activity,
+                    arrayOf(CAMERA_PERMISSION, READ_PERMISSION),
+                    1
+                )
             }
         }
     }
+}
