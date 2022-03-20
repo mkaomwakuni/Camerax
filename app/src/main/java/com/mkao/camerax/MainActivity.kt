@@ -1,5 +1,6 @@
 package com.mkao.camerax
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.pm.PackageManager
@@ -7,7 +8,6 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.recreate
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -15,7 +15,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mkao.camerax.databinding.ActivityMainBinding
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,14 +27,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val navHostFragment =supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = navHostFragment.navController
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_gallery, R.id.navigation_camera
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -46,13 +44,20 @@ class MainActivity : AppCompatActivity() {
 
     // if return values of true, then the recreate method will reload  all conditions met
     // activity because the necessary user permissions have been granted.
-
+    override fun onRequestPermissionsResult(requestCode: Int, permissions:
+    Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions,
+            grantResults)
+        if (!CameraPermissionHelper.hasCameraPermission(this) ||
+            !CameraPermissionHelper.hasStoragePermission(this)) {
+            CameraPermissionHelper.requestPermissions(this) }
+        else recreate() }
 
     //The CameraPermissionHelper object’s  permissions have been granted
     // if the user happens to deny any of the permissions (returns false) then the cameraPermissionHelper  request permissions again
     object CameraPermissionHelper {
-        private const val CAMERA_PERMISSION = android.Manifest.permission.CAMERA
-        private const val READ_PERMISSION = android.Manifest.permission.READ_EXTERNAL_STORAGE
+        private const val CAMERA_PERMISSION = Manifest.permission.CAMERA
+        private const val READ_PERMISSION = Manifest.permission.READ_EXTERNAL_STORAGE
 
         fun hasCameraPermission(activity: Activity): Boolean {
             return ContextCompat.checkSelfPermission(

@@ -6,20 +6,15 @@
     app:startDestination="@+id/navigation_camera">
 
     <fragment
-        android:id="@+id/navigation_camera"
-        android:name="com.mkao.camerax.ui.gallery.GalleryFragment"
-        android:label="@string/title_camera"
-        tools:layout="@layout/fragement_camera" />
-
-    <fragment
         android:id="@+id/navigation_gallery"
-        android:name="com.mkao.camerax.ui.camera.cameraFragment"
+        android:name="com.mkao.camerax.ui.gallery.GalleryFragment"
         android:label="@string/title_Gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.mkao.camerax.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_camera"
+        android:name="com.mkao.camerax.ui.camera.cameraFragment"
+        android:label="@string/title_camera"
+        tools:layout="@layout/fragement_camera" />
+
 </navigation>

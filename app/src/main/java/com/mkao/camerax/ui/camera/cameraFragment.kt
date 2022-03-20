@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
@@ -16,12 +15,11 @@ import java.util.concurrent.Executors
 import com.mkao.camerax.MainActivity
 import com.mkao.camerax.R
 import com.mkao.camerax.databinding.FragementCameraBinding
-import java.util.concurrent.Executors.newSingleThreadExecutor
+
 
 
 class cameraFragment : Fragment() {
     private var _binding: FragementCameraBinding? = null
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
