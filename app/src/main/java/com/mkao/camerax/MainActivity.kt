@@ -3,8 +3,10 @@ package com.mkao.camerax
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -15,6 +17,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mkao.camerax.databinding.ActivityMainBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navHostFragment =supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -44,14 +49,21 @@ class MainActivity : AppCompatActivity() {
 
     // if return values of true, then the recreate method will reload  all conditions met
     // activity because the necessary user permissions have been granted.
-    override fun onRequestPermissionsResult(requestCode: Int, permissions:
-    Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions,
-            grantResults)
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions:
+        Array<out String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(
+            requestCode, permissions,
+            grantResults
+        )
         if (!CameraPermissionHelper.hasCameraPermission(this) ||
-            !CameraPermissionHelper.hasStoragePermission(this)) {
-            CameraPermissionHelper.requestPermissions(this) }
-        else recreate() }
+            !CameraPermissionHelper.hasStoragePermission(this)
+        ) {
+            CameraPermissionHelper.requestPermissions(this)
+        } else recreate()
+    }
+
 
     //The CameraPermissionHelper object’s  permissions have been granted
     // if the user happens to deny any of the permissions (returns false) then the cameraPermissionHelper  request permissions again
@@ -93,6 +105,20 @@ class MainActivity : AppCompatActivity() {
                     1
                 )
             }
+        }
+    }
+
+    fun prepareContentValues(): ContentValues {
+        val timeStamp = SimpleDateFormat(
+            "yyyyMMdd_HHmmss",
+            Locale.getDefault()
+        ).format(Date())
+        val imageFileName = "image_$timeStamp"
+        return ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, imageFileName)
+            put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+            put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM")
+
         }
     }
 }
