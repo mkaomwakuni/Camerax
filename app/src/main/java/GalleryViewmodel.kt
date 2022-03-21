@@ -17,6 +17,7 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
     private val appContext: Application = application
     private var contentObserver: ContentObserver
     val photos = MutableLiveData<List<Photo>>()
+    var photoToDelete: Photo? = null
 
     init {
         contentObserver = getApplication<Application>()

@@ -6,15 +6,30 @@
     app:startDestination="@+id/navigation_camera">
 
     <fragment
-        android:id="@+id/navigation_gallery"
-        android:name="com.mkao.camerax.ui.gallery.GalleryFragment"
-        android:label="@string/title_Gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
         android:id="@+id/navigation_camera"
         android:name="com.mkao.camerax.ui.camera.cameraFragment"
         android:label="@string/title_camera"
         tools:layout="@layout/fragement_camera" />
 
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.mkao.camerax.ui.gallery.GalleryFragment"
+        android:label="@string/title_Gallery"
+        tools:layout="@layout/fragment_gallery">
+    <action
+        android:id="@+id/actionPhotoFilter"
+        app:destination="@id/nav_photo_filter"/>
+</fragment>
+
+<fragment
+android:id="@+id/nav_photo_filter"
+android:name="com.mkao.camerax.ui.gallery.PhotoFilterFragment"
+android:label="Edit photo"
+tools:layout="@layout/fragment_photo_filter" >
+<argument
+    android:name="photo"
+    android:defaultValue="@null"
+    app:argType="com.example.camera.Photo"
+    app:nullable="true" />
+</fragment>
 </navigation>
