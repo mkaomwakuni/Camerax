@@ -34,8 +34,7 @@ class cameraFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-       _binding = FragementCameraBinding.inflate(inflater,container,false)
+    ): View? {_binding = FragementCameraBinding.inflate(inflater,container,false)
         return binding.root
     }
 

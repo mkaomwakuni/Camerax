@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.mkao.camerax.Photo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -1,14 +1,13 @@
 package com.mkao.camerax.ui.gallery
 
 import GalleryViewModel
-import Photo
+import com.mkao.camerax.Photo
 import android.app.RecoverableSecurityException
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts

@@ -29,7 +29,7 @@ tools:layout="@layout/fragment_photo_filter" >
 <argument
     android:name="photo"
     android:defaultValue="@null"
-    app:argType="com.example.camera.Photo"
+    app:argType="com.mkao.camerax.Photo"
     app:nullable="true" />
 </fragment>
 </navigation>

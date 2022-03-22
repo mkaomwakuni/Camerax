@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filters_array">
+        <item>None</item>
+        <item>Greyscale</item>
+        <item>Swirl</item>
+        <item>Invert filter</item>
+        <item>Kuwahara filter</item>
+        <item>Sketch filter</item>
+        <item>Toon filter</item>
+    </string-array>
+</resources>

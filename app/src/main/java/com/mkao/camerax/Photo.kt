@@ -1,3 +1,5 @@
+package com.mkao.camerax
+
 import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -9,5 +11,5 @@ import kotlinx.parcelize.Parcelize
 
 data class Photo(val id: Long,
                  val uri: Uri) : Parcelable
-// id value  is unique to each Photo object, while the uri variable  contain
+// id value  is unique to each com.mkao.camerax.Photo object, while the uri variable  contain
 // URI object that details the location of the image file
