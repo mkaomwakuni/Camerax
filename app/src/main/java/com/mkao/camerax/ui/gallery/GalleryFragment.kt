@@ -3,11 +3,13 @@ package com.mkao.camerax.ui.gallery
 import GalleryViewModel
 import com.mkao.camerax.Photo
 import android.app.RecoverableSecurityException
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,7 +22,7 @@ import com.mkao.camerax.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {
 
-    private var _binding: FragmentGalleryBinding? = null
+    private var _binding:FragmentGalleryBinding? = null
     private lateinit var viewModel:GalleryViewModel
     private lateinit var galleryAdapter: GalleryAdapter
 
@@ -75,15 +77,22 @@ class GalleryFragment : Fragment() {
     }
 
     private fun deletePhoto() {
-        try {
-            val photo = viewModel.photoToDelete ?: return
-            val rowsDeleted = requireActivity().applicationContext.contentResolver.delete(photo.uri, null)
-            if(rowsDeleted == 1) viewModel.photoToDelete = null }
-        catch
-            (recoverableSecurityException: RecoverableSecurityException) {
-            val intentSender = recoverableSecurityException.userAction.actionIntent.intentSender
-            val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
-            registerResult.launch(intentSenderRequest) }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            try {
+                val photo = viewModel.photoToDelete ?: return
+                val rowsDeleted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    requireActivity().applicationContext.contentResolver
+                        .delete(photo.uri, null)
+                } else {
+                    Toast.makeText(requireActivity(),"Failed",Toast.LENGTH_SHORT)
+                }
+                if(rowsDeleted == 1) viewModel.photoToDelete = null }
+            catch
+                (recoverableSecurityException: RecoverableSecurityException) {
+                val intentSender = recoverableSecurityException.userAction.actionIntent.intentSender
+                val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
+                registerResult.launch(intentSenderRequest) }
+        }
     }
 
 
