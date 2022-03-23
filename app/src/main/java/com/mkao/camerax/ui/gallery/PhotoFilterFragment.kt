@@ -50,8 +50,7 @@ class PhotoFilterFragment : Fragment() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             requireActivity(),
-            R.array.filters_array,
-            android.R.layout.simple_spinner_item
+            R.array.filters_array,android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -97,7 +96,8 @@ class PhotoFilterFragment : Fragment() {
         when (filter) {
             "None" -> loadImage(null)
             "Greyscale" -> loadImage(GrayscaleTransformation())
-            "Swirl" -> loadImage(SwirlFilterTransformation(0.5f, 1.0f, PointF(0.5f, 0.5f)))
+            "Swirl" -> loadImage(SwirlFilterTransformation(
+                0.5f, 1.0f, PointF(0.5f, 0.5f)))
             "Invert filter" -> loadImage(InvertFilterTransformation())
             "Kuwahara filter" -> loadImage(KuwaharaFilterTransformation(25))
             "Sketch filter" -> loadImage(SketchFilterTransformation())
